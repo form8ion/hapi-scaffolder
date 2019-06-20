@@ -1,4 +1,4 @@
-export default function scaffold() {
+export async function scaffold() {
   return {
     dependencies: [
       '@hapi/glue',
