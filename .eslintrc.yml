@@ -1,3 +1,8 @@
 extends:
   - '@form8ion'
   - '@form8ion/mocha'
+
+overrides:
+  - files: templates/*.js
+    rules:
+      import/no-unresolved: off
