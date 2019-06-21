@@ -23,6 +23,10 @@ suite('scaffolder', () => {
         dependencies: [
           '@hapi/glue',
           'hapi-graceful-shutdown-plugin'
+        ],
+        devDependencies: [
+          'webpack',
+          'webpack-cli'
         ]
       }
     );

@@ -7,6 +7,10 @@ export async function scaffold({projectRoot}) {
     dependencies: [
       '@hapi/glue',
       'hapi-graceful-shutdown-plugin'
+    ],
+    devDependencies: [
+      'webpack',
+      'webpack-cli'
     ]
   };
 }
