@@ -39,7 +39,7 @@ suite('server', () => {
     assert.calledWith(
       promises.writeFile,
       `${pathToCreatedDirectory}/index.js`,
-      "export {default} from './server';"
+      "export {default} from './server';\n"
     );
     assert.calledWith(
       promises.copyFile,
