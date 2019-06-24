@@ -7,6 +7,11 @@ export default async function ({projectRoot}) {
 
   await Promise.all([
     promises.copyFile(resolve(__dirname, '..', 'templates', 'server.js'), `${serverDirectory}/server.js`),
-    promises.copyFile(resolve(__dirname, '..', 'templates', 'manifest.js'), `${serverDirectory}/manifest.js`)
+    promises.copyFile(resolve(__dirname, '..', 'templates', 'manifest.js'), `${serverDirectory}/manifest.js`),
+    promises.writeFile(`${serverDirectory}/index.js`, "export {default} from './server';"),
+    promises.copyFile(
+      resolve(__dirname, '..', 'templates', 'webpack.config.server.js'),
+      `${projectRoot}/webpack.config.server.babel.js`
+    )
   ]);
 }

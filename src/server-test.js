@@ -16,6 +16,7 @@ suite('server', () => {
 
     sandbox.stub(mkdir, 'default');
     sandbox.stub(promises, 'copyFile');
+    sandbox.stub(promises, 'writeFile');
   });
 
   teardown(() => sandbox.restore());
@@ -26,12 +27,24 @@ suite('server', () => {
     await scaffoldServer({projectRoot});
 
     assert.calledWith(
-      promises.copyFile, resolve(__dirname, '..', 'templates', 'server.js'),
+      promises.copyFile,
+      resolve(__dirname, '..', 'templates', 'server.js'),
       `${pathToCreatedDirectory}/server.js`
     );
     assert.calledWith(
-      promises.copyFile, resolve(__dirname, '..', 'templates', 'manifest.js'),
+      promises.copyFile,
+      resolve(__dirname, '..', 'templates', 'manifest.js'),
       `${pathToCreatedDirectory}/manifest.js`
+    );
+    assert.calledWith(
+      promises.writeFile,
+      `${pathToCreatedDirectory}/index.js`,
+      "export {default} from './server';"
+    );
+    assert.calledWith(
+      promises.copyFile,
+      resolve(__dirname, '..', 'templates', 'webpack.config.server.js'),
+      `${projectRoot}/webpack.config.server.babel.js`
     );
   });
 });

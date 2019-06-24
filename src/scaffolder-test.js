@@ -30,7 +30,7 @@ suite('scaffolder', () => {
         ],
         scripts: {
           build: 'npm-run-all --print-label --parallel build:*',
-          'build:server': 'webpack --env production',
+          'build:server': 'webpack --env production --config webpack.config.server.babel.js',
           start: 'node ./lib/server'
         }
       }
