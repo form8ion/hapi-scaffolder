@@ -22,6 +22,9 @@ suite('scaffolder', () => {
       {
         dependencies: [
           '@hapi/glue',
+          '@hapi/good',
+          '@hapi/good-squeeze',
+          '@hapi/good-console',
           'hapi-graceful-shutdown-plugin'
         ],
         devDependencies: [

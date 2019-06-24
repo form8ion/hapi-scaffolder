@@ -6,6 +6,9 @@ export async function scaffold({projectRoot}) {
   return {
     dependencies: [
       '@hapi/glue',
+      '@hapi/good',
+      '@hapi/good-squeeze',
+      '@hapi/good-console',
       'hapi-graceful-shutdown-plugin'
     ],
     devDependencies: [
