@@ -27,7 +27,12 @@ suite('scaffolder', () => {
         devDependencies: [
           'webpack',
           'webpack-cli'
-        ]
+        ],
+        scripts: {
+          build: 'npm-run-all --print-label --parallel build:*',
+          'build:server': 'webpack --env production',
+          start: 'node ./lib/server'
+        }
       }
     );
     assert.calledWith(serverScaffolder.default, {projectRoot});

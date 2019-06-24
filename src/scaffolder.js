@@ -11,6 +11,11 @@ export async function scaffold({projectRoot}) {
     devDependencies: [
       'webpack',
       'webpack-cli'
-    ]
+    ],
+    scripts: {
+      build: 'npm-run-all --print-label --parallel build:*',
+      'build:server': 'webpack --env production',
+      start: 'node ./lib/server'
+    }
   };
 }
