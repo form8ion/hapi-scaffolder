@@ -1,4 +1,5 @@
 import scaffoldServer from './server';
+import scaffoldDocumentation from './documentation';
 
 export async function scaffold({projectRoot}) {
   await scaffoldServer({projectRoot});
@@ -19,6 +20,7 @@ export async function scaffold({projectRoot}) {
       build: 'npm-run-all --print-label --parallel build:*',
       'build:server': 'webpack --env production --config webpack.config.server.babel.js',
       start: 'node ./lib/server'
-    }
+    },
+    documentation: scaffoldDocumentation()
   };
 }

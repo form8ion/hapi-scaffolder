@@ -2,6 +2,7 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
 import * as serverScaffolder from './server';
+import * as documentationScaffolder from './documentation';
 import {scaffold} from './scaffolder';
 
 suite('scaffolder', () => {
@@ -12,11 +13,15 @@ suite('scaffolder', () => {
     sandbox = sinon.createSandbox();
 
     sandbox.stub(serverScaffolder, 'default');
+    sandbox.stub(documentationScaffolder, 'default');
   });
 
   teardown(() => sandbox.restore());
 
   test('that the hapi details are scaffolded', async () => {
+    const documentation = any.simpleObject();
+    documentationScaffolder.default.returns(documentation);
+
     assert.deepEqual(
       await scaffold({projectRoot}),
       {
@@ -35,7 +40,8 @@ suite('scaffolder', () => {
           build: 'npm-run-all --print-label --parallel build:*',
           'build:server': 'webpack --env production --config webpack.config.server.babel.js',
           start: 'node ./lib/server'
-        }
+        },
+        documentation
       }
     );
     assert.calledWith(serverScaffolder.default, {projectRoot});
