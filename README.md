@@ -25,6 +25,7 @@ $ npm install @form8ion/hapi-scaffolder --save
 [![Commitizen friendly][commitizen-badge]][commitizen-link]
 [![semantic-release][semantic-release-badge]][semantic-release-link]
 [![PRs Welcome][PRs-badge]][PRs-link]
+[![Greenkeeper badge](https://badges.greenkeeper.io/form8ion/hapi-scaffolder.svg)](https://greenkeeper.io/)
 
 ### Dependencies
 
