@@ -8,8 +8,8 @@ export async function scaffold({projectRoot, projectName}) {
     dependencies: [
       '@hapi/glue',
       '@hapi/good',
-      '@hapi/good-bunyan',
       'hapi-graceful-shutdown-plugin',
+      'good-bunyan',
       'bunyan'
     ],
     devDependencies: [
