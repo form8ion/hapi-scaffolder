@@ -1,3 +1,9 @@
+import bunyan from 'bunyan';
+
+const logger = bunyan.createLogger({
+  name: '{{ projectName }}'
+});
+
 export default {
   server: {port: process.env.PORT, routes: {security: true}},
   register: {
@@ -16,14 +22,14 @@ export default {
             interval: 1000
           },
           reporters: {
-            console: [
+            bunyan: [
               {
-                module: require('@hapi/good-squeeze'),
-                name: 'Squeeze',
-                args: [{log: '*', request: '*', response: '*', error: '*'}]
-              },
-              {module: require('@hapi/good-console')},
-              'stdout'
+                module: require('good-bunyan'),
+                args: [
+                  {log: '*', request: '*', response: '*', error: '*'},
+                  {logger, levels: {response: 'info', request: 'info'}}
+                ]
+              }
             ]
           }
         }

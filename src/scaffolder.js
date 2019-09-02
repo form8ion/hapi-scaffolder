@@ -1,16 +1,16 @@
 import scaffoldServer from './server';
 import scaffoldDocumentation from './documentation';
 
-export async function scaffold({projectRoot}) {
-  await scaffoldServer({projectRoot});
+export async function scaffold({projectRoot, projectName}) {
+  await scaffoldServer({projectRoot, projectName});
 
   return {
     dependencies: [
       '@hapi/glue',
       '@hapi/good',
-      '@hapi/good-squeeze',
-      '@hapi/good-console',
-      'hapi-graceful-shutdown-plugin'
+      '@hapi/good-bunyan',
+      'hapi-graceful-shutdown-plugin',
+      'bunyan'
     ],
     devDependencies: [
       'webpack',

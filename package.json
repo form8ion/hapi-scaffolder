@@ -41,6 +41,7 @@
     "@form8ion/eslint-config-mocha": "^1.2.3",
     "@form8ion/remark-lint-preset": "^1.0.1",
     "@travi/any": "^2.0.4",
+    "@travi/javascript-scaffolder": "^7.5.0",
     "ban-sensitive-files": "^1.9.2",
     "chai": "^4.2.0",
     "codecov": "^3.5.0",
@@ -57,6 +58,10 @@
     "travis-lint": "^1.0.0"
   },
   "dependencies": {
-    "make-dir": "^3.0.0"
+    "make-dir": "^3.0.0",
+    "mustache": "^3.0.3"
+  },
+  "peerDependencies": {
+    "@travi/javascript-scaffolder": "^7.5.0"
   }
 }

@@ -20,17 +20,18 @@ suite('scaffolder', () => {
 
   test('that the hapi details are scaffolded', async () => {
     const documentation = any.simpleObject();
+    const projectName = any.word();
     documentationScaffolder.default.returns(documentation);
 
     assert.deepEqual(
-      await scaffold({projectRoot}),
+      await scaffold({projectRoot, projectName}),
       {
         dependencies: [
           '@hapi/glue',
           '@hapi/good',
-          '@hapi/good-squeeze',
-          '@hapi/good-console',
-          'hapi-graceful-shutdown-plugin'
+          '@hapi/good-bunyan',
+          'hapi-graceful-shutdown-plugin',
+          'bunyan'
         ],
         devDependencies: [
           'webpack',
@@ -44,6 +45,6 @@ suite('scaffolder', () => {
         documentation
       }
     );
-    assert.calledWith(serverScaffolder.default, {projectRoot});
+    assert.calledWith(serverScaffolder.default, {projectRoot, projectName});
   });
 });
