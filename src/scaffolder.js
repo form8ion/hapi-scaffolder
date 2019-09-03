@@ -1,8 +1,9 @@
 import scaffoldServer from './server';
 import scaffoldDocumentation from './documentation';
+import scaffoldTesting from './testing';
 
-export async function scaffold({projectRoot, projectName}) {
-  await scaffoldServer({projectRoot, projectName});
+export async function scaffold({projectRoot, projectName, tests}) {
+  const [testingResults] = await Promise.all([scaffoldTesting({tests}), scaffoldServer({projectRoot, projectName})]);
 
   return {
     dependencies: [
@@ -15,7 +16,7 @@ export async function scaffold({projectRoot, projectName}) {
     devDependencies: [
       'webpack',
       'webpack-cli',
-      'http-status-codes'
+      ...testingResults.devDependencies
     ],
     scripts: {
       build: 'npm-run-all --print-label --parallel build:*',
