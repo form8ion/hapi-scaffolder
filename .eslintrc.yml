@@ -6,3 +6,7 @@ overrides:
   - files: templates/*.js
     rules:
       import/no-unresolved: off
+  - files: templates/server-steps.js
+    rules:
+      import/no-extraneous-dependencies: off
+      prefer-arrow-callback: off

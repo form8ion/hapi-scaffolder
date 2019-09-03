@@ -35,7 +35,8 @@ suite('scaffolder', () => {
         ],
         devDependencies: [
           'webpack',
-          'webpack-cli'
+          'webpack-cli',
+          'http-status-codes'
         ],
         scripts: {
           build: 'npm-run-all --print-label --parallel build:*',
