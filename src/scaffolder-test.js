@@ -27,7 +27,7 @@ suite('scaffolder', () => {
     const testingDevDependencies = any.listOf(any.string);
     const testingResults = {...any.simpleObject(), devDependencies: testingDevDependencies};
     documentationScaffolder.default.returns(documentation);
-    testingScaffolder.default.withArgs({tests}).resolves(testingResults);
+    testingScaffolder.default.withArgs({tests, projectRoot}).resolves(testingResults);
 
     assert.deepEqual(
       await scaffold({projectRoot, projectName, tests}),
@@ -47,7 +47,8 @@ suite('scaffolder', () => {
         scripts: {
           build: 'npm-run-all --print-label --parallel build:*',
           'build:server': 'webpack --env production --config webpack.config.server.babel.js',
-          start: 'node ./lib/server'
+          start: 'node ./lib/server',
+          'pretest:integration': 'run-s build'
         },
         documentation
       }

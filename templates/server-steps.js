@@ -7,7 +7,7 @@ let server, serverResponse;
 BeforeAll(async () => {
   // this is the bundled version of the app, which is built after linting happens
   // eslint-disable-next-line  import/no-unresolved
-  server = await require('../../../../lib/server');
+  server = await require('../../../../lib/server').default;
 });
 
 When('the root route is loaded', async function () {

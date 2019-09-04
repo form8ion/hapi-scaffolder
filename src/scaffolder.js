@@ -3,7 +3,10 @@ import scaffoldDocumentation from './documentation';
 import scaffoldTesting from './testing';
 
 export async function scaffold({projectRoot, projectName, tests}) {
-  const [testingResults] = await Promise.all([scaffoldTesting({tests}), scaffoldServer({projectRoot, projectName})]);
+  const [testingResults] = await Promise.all([
+    scaffoldTesting({projectRoot, tests}),
+    scaffoldServer({projectRoot, projectName})
+  ]);
 
   return {
     dependencies: [
@@ -21,7 +24,8 @@ export async function scaffold({projectRoot, projectName, tests}) {
     scripts: {
       build: 'npm-run-all --print-label --parallel build:*',
       'build:server': 'webpack --env production --config webpack.config.server.babel.js',
-      start: 'node ./lib/server'
+      start: 'node ./lib/server',
+      'pretest:integration': 'run-s build'
     },
     documentation: scaffoldDocumentation()
   };
