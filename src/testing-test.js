@@ -21,7 +21,9 @@ suite('testing', () => {
   teardown(() => sandbox.restore());
 
   test('that a canary cucumber test is created when the project will be integration tested', async () => {
-    mkdir.default.withArgs(`${projectRoot}/test/integration/features`).resolves(pathToCreatedDirectory);
+    mkdir.default
+      .withArgs(`${projectRoot}/test/integration/features/step_definitions`)
+      .resolves(pathToCreatedDirectory);
 
     const results = await scaffoldTesting({projectRoot, tests: {integration: true}});
 
@@ -29,12 +31,12 @@ suite('testing', () => {
     assert.calledWith(
       promises.copyFile,
       resolve(__dirname, '..', 'templates', 'canary.feature'),
-      `${pathToCreatedDirectory}/canary.feature`
+      `${pathToCreatedDirectory}/../canary.feature`
     );
     assert.calledWith(
       promises.copyFile,
       resolve(__dirname, '..', 'templates', 'server-steps.js'),
-      `${pathToCreatedDirectory}/step_definitions/server-steps.js`
+      `${pathToCreatedDirectory}/server-steps.js`
     );
   });
 
