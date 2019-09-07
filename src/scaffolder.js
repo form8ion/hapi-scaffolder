@@ -13,6 +13,7 @@ export async function scaffold({projectRoot, projectName, tests}) {
       '@hapi/glue',
       '@hapi/good',
       'hapi-graceful-shutdown-plugin',
+      'dotenv-safe',
       'good-bunyan',
       'bunyan'
     ],

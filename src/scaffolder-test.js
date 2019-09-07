@@ -36,6 +36,7 @@ suite('scaffolder', () => {
           '@hapi/glue',
           '@hapi/good',
           'hapi-graceful-shutdown-plugin',
+          'dotenv-safe',
           'good-bunyan',
           'bunyan'
         ],

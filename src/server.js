@@ -8,6 +8,7 @@ export default async function ({projectRoot, projectName}) {
 
   await Promise.all([
     promises.copyFile(resolve(__dirname, '..', 'templates', 'server.js'), `${serverDirectory}/server.js`),
+    promises.copyFile(resolve(__dirname, '..', 'templates', '.env.example'), `${projectRoot}/.env.example`),
     promises.writeFile(
       `${serverDirectory}/manifest.js`,
       mustache.render(

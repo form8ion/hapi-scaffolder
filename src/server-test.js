@@ -43,6 +43,11 @@ suite('server', () => {
       resolve(__dirname, '..', 'templates', 'server.js'),
       `${pathToCreatedDirectory}/server.js`
     );
+    assert.calledWith(
+      promises.copyFile,
+      resolve(__dirname, '..', 'templates', '.env.example'),
+      `${projectRoot}/.env.example`
+    );
     assert.calledWith(promises.writeFile, `${pathToCreatedDirectory}/manifest.js`, renderedContent);
     assert.calledWith(promises.writeFile, `${pathToCreatedDirectory}/index.js`, "export {default} from './server';\n");
     assert.calledWith(
