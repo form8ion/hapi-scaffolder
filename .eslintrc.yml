@@ -7,6 +7,7 @@ overrides:
   - files: templates/*.js
     rules:
       import/no-unresolved: off
+      import/extensions: off
   - files: templates/server-steps.js
     rules:
       import/no-extraneous-dependencies: off
