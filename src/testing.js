@@ -4,10 +4,18 @@ import deepmerge from 'deepmerge';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
 import mkdir from '../thirdparty-wrappers/make-dir';
 
-export default async function ({projectRoot, tests}) {
+export default async function ({projectRoot, packageName, tests}) {
   const commonResults = {
     devDependencies: ['check-engine'],
     scripts: {'lint:engines': 'check-engine'},
+    badges: {
+      consumer: {
+        node: {
+          img: `https://img.shields.io/node/v/${packageName}.svg`,
+          text: 'node'
+        }
+      }
+    },
     packageProperties: {engines: {node: '12.x.x'}}
   };
 

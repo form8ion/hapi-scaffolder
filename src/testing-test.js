@@ -11,6 +11,7 @@ suite('testing', () => {
   let sandbox;
   const projectRoot = any.string();
   const pathToCreatedDirectory = any.string();
+  const packageName = any.word();
 
   setup(() => {
     sandbox = sinon.createSandbox();
@@ -37,7 +38,7 @@ suite('testing', () => {
         eslintConfigs: cucumberEslintConfigs
       });
 
-    const results = await scaffoldTesting({projectRoot, tests: {integration: true}});
+    const results = await scaffoldTesting({projectRoot, packageName, tests: {integration: true}});
 
     assert.deepEqual(
       results,
@@ -45,7 +46,15 @@ suite('testing', () => {
         scripts: {'lint:engines': 'check-engine', ...cucumberScripts},
         devDependencies: ['check-engine', '@travi/any', 'http-status-codes', ...cucumberDevDependencies],
         eslintConfigs: cucumberEslintConfigs,
-        packageProperties: {engines: {node: '12.x.x'}}
+        packageProperties: {engines: {node: '12.x.x'}},
+        badges: {
+          consumer: {
+            node: {
+              img: `https://img.shields.io/node/v/${packageName}.svg`,
+              text: 'node'
+            }
+          }
+        }
       }
     );
     assert.calledWith(
@@ -61,14 +70,22 @@ suite('testing', () => {
   });
 
   test('that no canary test is created when the project will not be integration tested', async () => {
-    const results = await scaffoldTesting({tests: {integration: false}});
+    const results = await scaffoldTesting({tests: {integration: false}, packageName});
 
     assert.deepEqual(
       results,
       {
         devDependencies: ['check-engine'],
         packageProperties: {engines: {node: '12.x.x'}},
-        scripts: {'lint:engines': 'check-engine'}
+        scripts: {'lint:engines': 'check-engine'},
+        badges: {
+          consumer: {
+            node: {
+              img: `https://img.shields.io/node/v/${packageName}.svg`,
+              text: 'node'
+            }
+          }
+        }
       }
     );
     assert.notCalled(mkdir.default);
