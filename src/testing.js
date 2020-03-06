@@ -24,9 +24,10 @@ export default async function ({projectRoot, tests}) {
     return {
       scripts: cucumberResults.scripts,
       devDependencies: ['@travi/any', 'http-status-codes', ...cucumberResults.devDependencies],
-      eslintConfigs: cucumberResults.eslintConfigs
+      eslintConfigs: cucumberResults.eslintConfigs,
+      packageProperties: {engines: {node: '12.x.x'}}
     };
   }
 
-  return {devDependencies: []};
+  return {devDependencies: [], packageProperties: {engines: {node: '12.x.x'}}};
 }
