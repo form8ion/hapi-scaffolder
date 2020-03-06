@@ -42,8 +42,8 @@ suite('testing', () => {
     assert.deepEqual(
       results,
       {
-        scripts: cucumberScripts,
-        devDependencies: ['@travi/any', 'http-status-codes', ...cucumberDevDependencies],
+        scripts: {'lint:engines': 'check-engine', ...cucumberScripts},
+        devDependencies: ['check-engine', '@travi/any', 'http-status-codes', ...cucumberDevDependencies],
         eslintConfigs: cucumberEslintConfigs,
         packageProperties: {engines: {node: '12.x.x'}}
       }
@@ -63,7 +63,14 @@ suite('testing', () => {
   test('that no canary test is created when the project will not be integration tested', async () => {
     const results = await scaffoldTesting({tests: {integration: false}});
 
-    assert.deepEqual(results, {devDependencies: [], packageProperties: {engines: {node: '12.x.x'}}});
+    assert.deepEqual(
+      results,
+      {
+        devDependencies: ['check-engine'],
+        packageProperties: {engines: {node: '12.x.x'}},
+        scripts: {'lint:engines': 'check-engine'}
+      }
+    );
     assert.notCalled(mkdir.default);
     assert.notCalled(promises.copyFile);
   });

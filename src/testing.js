@@ -1,9 +1,16 @@
 import {resolve} from 'path';
 import {promises} from 'fs';
+import deepmerge from 'deepmerge';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
 import mkdir from '../thirdparty-wrappers/make-dir';
 
 export default async function ({projectRoot, tests}) {
+  const commonResults = {
+    devDependencies: ['check-engine'],
+    scripts: {'lint:engines': 'check-engine'},
+    packageProperties: {engines: {node: '12.x.x'}}
+  };
+
   if (tests.integration) {
     const [stepDefinitionsDirectory, cucumberResults] = await Promise.all([
       mkdir(`${projectRoot}/test/integration/features/step_definitions`),
@@ -21,13 +28,15 @@ export default async function ({projectRoot, tests}) {
       )
     ]);
 
-    return {
-      scripts: cucumberResults.scripts,
-      devDependencies: ['@travi/any', 'http-status-codes', ...cucumberResults.devDependencies],
-      eslintConfigs: cucumberResults.eslintConfigs,
-      packageProperties: {engines: {node: '12.x.x'}}
-    };
+    return deepmerge(
+      commonResults,
+      {
+        scripts: cucumberResults.scripts,
+        devDependencies: ['@travi/any', 'http-status-codes', ...cucumberResults.devDependencies],
+        eslintConfigs: cucumberResults.eslintConfigs
+      }
+    );
   }
 
-  return {devDependencies: [], packageProperties: {engines: {node: '12.x.x'}}};
+  return commonResults;
 }
