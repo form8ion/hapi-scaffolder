@@ -54,7 +54,7 @@
     "bdd-stdin": "0.2.0",
     "chai": "4.2.0",
     "codecov": "3.6.5",
-    "cucumber": "6.0.2",
+    "cucumber": "6.0.5",
     "cz-conventional-changelog": "3.0.2",
     "gherkin-lint": "4.0.0",
     "husky": "4.0.3",
