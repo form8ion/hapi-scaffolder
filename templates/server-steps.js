@@ -1,4 +1,4 @@
-import {NOT_FOUND} from 'http-status-codes';
+import {StatusCodes} from 'http-status-codes';
 import {AfterAll, BeforeAll, Then, When} from 'cucumber';
 import {assert} from 'chai';
 import any from '@travi/any';
@@ -21,7 +21,7 @@ When('the root route is loaded', async function () {
 });
 
 Then('the server responds', async function () {
-  assert.equal(serverResponse.statusCode, NOT_FOUND);
+  assert.equal(serverResponse.statusCode, StatusCodes.NOT_FOUND);
 });
 
 AfterAll(async () => {
