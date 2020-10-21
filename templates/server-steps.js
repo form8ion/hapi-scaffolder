@@ -1,5 +1,5 @@
 import {StatusCodes} from 'http-status-codes';
-import {AfterAll, BeforeAll, Then, When} from 'cucumber';
+import {AfterAll, BeforeAll, Then, When} from '@cucumber/cucumber';
 import {assert} from 'chai';
 import any from '@travi/any';
 
