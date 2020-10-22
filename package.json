@@ -70,7 +70,7 @@
     "travis-lint": "1.0.0"
   },
   "dependencies": {
-    "@form8ion/cucumber-scaffolder": "1.1.0",
+    "@form8ion/cucumber-scaffolder": "1.4.0",
     "deepmerge": "^4.2.2",
     "make-dir": "^3.0.0",
     "mustache": "^4.0.0"
