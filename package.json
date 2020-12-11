@@ -23,7 +23,6 @@
     "lint:gherkin": "gherkin-lint",
     "lint:md": "remark . --frail",
     "lint:sensitive": "ban",
-    "lint:travis": "travis-lint .travis.yml",
     "lint:peer": "npm ls >/dev/null",
     "clean": "rimraf ./lib",
     "prebuild": "run-s clean",
@@ -66,8 +65,7 @@
     "rimraf": "3.0.2",
     "rollup": "2.34.2",
     "rollup-plugin-auto-external": "2.0.0",
-    "sinon": "9.0.3",
-    "travis-lint": "1.0.0"
+    "sinon": "9.0.3"
   },
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "1.4.0",
