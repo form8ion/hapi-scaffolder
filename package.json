@@ -52,7 +52,7 @@
     "@travi/project-scaffolder": "9.0.6",
     "ban-sensitive-files": "1.9.15",
     "bdd-stdin": "0.2.0",
-    "chai": "4.3.3",
+    "chai": "4.3.4",
     "codecov": "3.8.1",
     "cucumber": "6.0.5",
     "cz-conventional-changelog": "3.3.0",
