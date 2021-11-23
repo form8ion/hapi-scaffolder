@@ -11,7 +11,6 @@ suite('testing', () => {
   let sandbox;
   const projectRoot = any.string();
   const pathToCreatedDirectory = any.string();
-  const packageName = any.word();
 
   setup(() => {
     sandbox = sinon.createSandbox();
@@ -38,23 +37,15 @@ suite('testing', () => {
         eslintConfigs: cucumberEslintConfigs
       });
 
-    const results = await scaffoldTesting({projectRoot, packageName, tests: {integration: true}});
+    const results = await scaffoldTesting({projectRoot, tests: {integration: true}});
 
     assert.deepEqual(
       results,
       {
-        scripts: {'lint:engines': 'check-engine', ...cucumberScripts},
-        devDependencies: ['check-engine', '@travi/any', 'http-status-codes', ...cucumberDevDependencies],
+        scripts: cucumberScripts,
+        devDependencies: ['@travi/any', 'http-status-codes', ...cucumberDevDependencies],
         eslintConfigs: cucumberEslintConfigs,
-        packageProperties: {engines: {node: '12.x.x'}},
-        badges: {
-          consumer: {
-            node: {
-              img: `https://img.shields.io/node/v/${packageName}.svg`,
-              text: 'node'
-            }
-          }
-        }
+        packageProperties: {engines: {node: '>=12'}}
       }
     );
     assert.calledWith(
@@ -70,24 +61,9 @@ suite('testing', () => {
   });
 
   test('that no canary test is created when the project will not be integration tested', async () => {
-    const results = await scaffoldTesting({tests: {integration: false}, packageName});
+    const results = await scaffoldTesting({tests: {integration: false}});
 
-    assert.deepEqual(
-      results,
-      {
-        devDependencies: ['check-engine'],
-        packageProperties: {engines: {node: '12.x.x'}},
-        scripts: {'lint:engines': 'check-engine'},
-        badges: {
-          consumer: {
-            node: {
-              img: `https://img.shields.io/node/v/${packageName}.svg`,
-              text: 'node'
-            }
-          }
-        }
-      }
-    );
+    assert.deepEqual(results, {packageProperties: {engines: {node: '>=12'}}});
     assert.notCalled(mkdir.default);
     assert.notCalled(promises.copyFile);
   });
