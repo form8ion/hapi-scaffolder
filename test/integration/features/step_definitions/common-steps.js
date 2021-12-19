@@ -1,7 +1,7 @@
 import {resolve} from 'path';
 import {promises as fsPromises} from 'fs';
 import stubbedFs from 'mock-fs';
-import {Before, Then, When} from 'cucumber';
+import {Before, Then, When} from '@cucumber/cucumber';
 import {scaffold} from '../../../../src';
 
 const {readFile} = fsPromises;
