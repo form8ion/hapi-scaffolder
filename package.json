@@ -43,7 +43,7 @@
     "@travi/any": "2.0.19",
     "@travi/javascript-scaffolder": "14.14.7",
     "ban-sensitive-files": "1.9.17",
-    "chai": "4.3.5",
+    "chai": "4.3.6",
     "codecov": "3.8.3",
     "cz-conventional-changelog": "3.3.0",
     "husky": "7.0.4",
