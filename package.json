@@ -39,7 +39,7 @@
     "@form8ion/commitlint-config": "1.0.35",
     "@form8ion/eslint-config": "5.0.5",
     "@form8ion/eslint-config-mocha": "1.2.17",
-    "@form8ion/remark-lint-preset": "2.1.7",
+    "@form8ion/remark-lint-preset": "2.1.8",
     "@travi/any": "2.0.20",
     "@travi/javascript-scaffolder": "14.14.7",
     "ban-sensitive-files": "1.9.18",
