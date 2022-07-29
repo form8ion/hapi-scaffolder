@@ -1,6 +1,9 @@
+import deepmerge from 'deepmerge';
+
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
+
 import * as serverScaffolder from './server';
 import * as documentationScaffolder from './documentation';
 import * as testingScaffolder from './testing';
@@ -13,6 +16,7 @@ suite('scaffolder', () => {
   setup(() => {
     sandbox = sinon.createSandbox();
 
+    sandbox.stub(deepmerge, 'all');
     sandbox.stub(serverScaffolder, 'default');
     sandbox.stub(documentationScaffolder, 'default');
     sandbox.stub(testingScaffolder, 'default');
@@ -28,32 +32,32 @@ suite('scaffolder', () => {
     const testingResults = {...any.simpleObject(), devDependencies: testingDevDependencies};
     documentationScaffolder.default.returns(documentation);
     testingScaffolder.default.withArgs({tests, projectRoot}).resolves(testingResults);
-
-    assert.deepEqual(
-      await scaffold({projectRoot, projectName, tests}),
-      {
-        dependencies: [
-          '@hapi/glue',
-          '@hapi/good',
-          'hapi-graceful-shutdown-plugin',
-          'dotenv-safe',
-          'good-bunyan',
-          'bunyan'
-        ],
-        devDependencies: [
-          'webpack',
-          'webpack-cli',
-          ...testingDevDependencies
-        ],
-        scripts: {
-          build: 'npm-run-all --print-label --parallel build:*',
-          'build:server': 'webpack --env production --config webpack.config.server.babel.js',
-          start: 'node ./lib/server',
-          'pretest:integration': 'run-s build'
+    const mergedResults = any.simpleObject();
+    deepmerge.all
+      .withArgs([
+        {
+          dependencies: [
+            '@hapi/glue',
+            '@hapi/good',
+            'hapi-graceful-shutdown-plugin',
+            'dotenv-safe',
+            'good-bunyan',
+            'bunyan'
+          ],
+          devDependencies: ['webpack', 'webpack-cli'],
+          scripts: {
+            build: 'npm-run-all --print-label --parallel build:*',
+            'build:server': 'webpack --env production --config webpack.config.server.babel.js',
+            start: 'node ./lib/server',
+            'pretest:integration': 'run-s build'
+          },
+          documentation
         },
-        documentation
-      }
-    );
+        testingResults
+      ])
+      .returns(mergedResults);
+
+    assert.equal(await scaffold({projectRoot, projectName, tests}), mergedResults);
     assert.calledWith(serverScaffolder.default, {projectRoot, projectName});
   });
 });

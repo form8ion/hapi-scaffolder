@@ -1,6 +1,8 @@
 import {resolve} from 'path';
 import {promises} from 'fs';
+import deepmerge from 'deepmerge';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
+
 import mkdir from '../thirdparty-wrappers/make-dir';
 
 export default async function ({projectRoot, tests}) {
@@ -21,11 +23,10 @@ export default async function ({projectRoot, tests}) {
       )
     ]);
 
-    return {
-      scripts: cucumberResults.scripts,
-      devDependencies: ['@travi/any', 'http-status-codes', ...cucumberResults.devDependencies],
-      eslintConfigs: cucumberResults.eslintConfigs
-    };
+    return deepmerge.all([
+      {devDependencies: ['@travi/any', 'http-status-codes']},
+      cucumberResults
+    ]);
   }
 
   return {};
