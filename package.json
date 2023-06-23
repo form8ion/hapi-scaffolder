@@ -58,7 +58,7 @@
     "travis-lint": "1.0.0"
   },
   "dependencies": {
-    "make-dir": "^3.0.0",
+    "make-dir": "^4.0.0",
     "mustache": "^4.0.0"
   },
   "peerDependencies": {
