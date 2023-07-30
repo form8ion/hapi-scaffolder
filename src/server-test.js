@@ -40,7 +40,7 @@ suite('server', () => {
 
     assert.calledWith(
       promises.copyFile,
-      resolve(__dirname, '..', 'templates', 'server.js'),
+      resolve(__dirname, '..', 'templates', 'server.mjs'),
       `${pathToCreatedDirectory}/server.js`
     );
     assert.calledWith(
@@ -52,7 +52,7 @@ suite('server', () => {
     assert.calledWith(promises.writeFile, `${pathToCreatedDirectory}/index.js`, "export {default} from './server';\n");
     assert.calledWith(
       promises.copyFile,
-      resolve(__dirname, '..', 'templates', 'webpack.config.server.js'),
+      resolve(__dirname, '..', 'templates', 'webpack.config.server.mjs'),
       `${projectRoot}/webpack.config.server.babel.js`
     );
   });
