@@ -1,7 +1,8 @@
 import {promises} from 'fs';
 import {resolve} from 'path';
 import mustache from 'mustache';
-import mkdir from '../thirdparty-wrappers/make-dir';
+
+import mkdir from '../thirdparty-wrappers/make-dir.js';
 
 export default async function ({projectRoot, projectName}) {
   const serverDirectory = await mkdir(`${projectRoot}/src/server`);

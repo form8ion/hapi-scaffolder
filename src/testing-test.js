@@ -1,11 +1,13 @@
 import {resolve} from 'path';
 import {promises} from 'fs';
 import * as cucumberScaffolder from '@form8ion/cucumber-scaffolder';
+
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
-import * as mkdir from '../thirdparty-wrappers/make-dir';
-import scaffoldTesting from './testing';
+
+import * as mkdir from '../thirdparty-wrappers/make-dir.js';
+import scaffoldTesting from './testing.js';
 
 suite('testing', () => {
   let sandbox;
