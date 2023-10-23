@@ -1,11 +1,13 @@
 import {promises} from 'fs';
 import {resolve} from 'path';
 import mustache from 'mustache';
+
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import * as mkdir from '../thirdparty-wrappers/make-dir';
-import scaffoldServer from './server';
+
+import * as mkdir from '../thirdparty-wrappers/make-dir.js';
+import scaffoldServer from './server.js';
 
 suite('server', () => {
   let sandbox;

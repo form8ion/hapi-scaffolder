@@ -1,8 +1,8 @@
 import deepmerge from 'deepmerge';
 
-import scaffoldServer from './server';
-import scaffoldDocumentation from './documentation';
-import scaffoldTesting from './testing';
+import scaffoldServer from './server.js';
+import scaffoldDocumentation from './documentation.js';
+import scaffoldTesting from './testing.js';
 
 export async function scaffold({projectRoot, projectName, tests}) {
   const [testingResults] = await Promise.all([

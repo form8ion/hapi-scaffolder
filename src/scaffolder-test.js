@@ -4,10 +4,10 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
 
-import * as serverScaffolder from './server';
-import * as documentationScaffolder from './documentation';
-import * as testingScaffolder from './testing';
-import {scaffold} from './scaffolder';
+import * as serverScaffolder from './server.js';
+import * as documentationScaffolder from './documentation.js';
+import * as testingScaffolder from './testing.js';
+import {scaffold} from './scaffolder.js';
 
 suite('scaffolder', () => {
   let sandbox;

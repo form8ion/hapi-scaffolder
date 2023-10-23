@@ -1,9 +1,10 @@
 import {resolve} from 'path';
 import {promises} from 'fs';
 import deepmerge from 'deepmerge';
+
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
 
-import mkdir from '../thirdparty-wrappers/make-dir';
+import mkdir from '../thirdparty-wrappers/make-dir.js';
 
 export default async function ({projectRoot, tests}) {
   if (tests.integration) {

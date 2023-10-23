@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import scaffoldDocumentation from './documentation';
+
+import scaffoldDocumentation from './documentation.js';
 
 suite('documentation', () => {
   test('that details are provided', () => {
