@@ -38,7 +38,7 @@
     "@form8ion/babel-preset": "1.6.123",
     "@form8ion/commitlint-config": "1.0.73",
     "@form8ion/eslint-config": "7.0.9",
-    "@form8ion/eslint-config-mocha": "3.0.2",
+    "@form8ion/eslint-config-mocha": "3.0.3",
     "@form8ion/remark-lint-preset": "6.0.2",
     "@travi/any": "3.1.0",
     "@travi/javascript-scaffolder": "14.14.7",
