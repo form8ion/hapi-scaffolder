@@ -14,11 +14,9 @@ export async function scaffold({projectRoot, projectName, tests}) {
     {
       dependencies: [
         '@hapi/glue',
-        '@hapi/good',
         'hapi-graceful-shutdown-plugin',
-        'dotenv-safe',
-        'good-bunyan',
-        'bunyan'
+        'hapi-pino',
+        'dotenv-safe'
       ],
       devDependencies: ['webpack', 'webpack-cli'],
       scripts: {
