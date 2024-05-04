@@ -51,7 +51,11 @@ suite('server', () => {
       `${projectRoot}/.env.example`
     );
     assert.calledWith(promises.writeFile, `${pathToCreatedDirectory}/manifest.js`, renderedContent);
-    assert.calledWith(promises.writeFile, `${pathToCreatedDirectory}/index.js`, "export {default} from './server';\n");
+    assert.calledWith(
+      promises.writeFile,
+      `${pathToCreatedDirectory}/index.js`,
+      "export {default} from './server.js';\n"
+    );
     assert.calledWith(
       promises.copyFile,
       resolve(__dirname, '..', 'templates', 'webpack.config.server.mjs'),

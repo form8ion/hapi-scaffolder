@@ -1,5 +1,6 @@
 import Glue from '@hapi/glue';
-import manifest from './manifest';
+
+import manifest from './manifest.js';
 
 const startServer = async function () {
   try {

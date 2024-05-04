@@ -17,7 +17,7 @@ export default async function ({projectRoot, projectName}) {
         {projectName}
       )
     ),
-    promises.writeFile(`${serverDirectory}/index.js`, 'export {default} from \'./server\';\n'),
+    promises.writeFile(`${serverDirectory}/index.js`, 'export {default} from \'./server.js\';\n'),
     promises.copyFile(
       resolve(__dirname, '..', 'templates', 'webpack.config.server.mjs'),
       `${projectRoot}/webpack.config.server.babel.js`
