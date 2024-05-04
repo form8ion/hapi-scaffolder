@@ -37,8 +37,7 @@ Then('the expected results are returned to the js scaffolder', async function ()
     [
       '@hapi/glue',
       'hapi-graceful-shutdown-plugin',
-      'hapi-pino',
-      'dotenv-safe'
+      'hapi-pino'
     ]
   );
 });

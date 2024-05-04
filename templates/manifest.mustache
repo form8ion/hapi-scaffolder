@@ -1,7 +1,5 @@
 import HapiPino from 'hapi-pino';
 
-require('dotenv-safe').config();
-
 export default {
   server: {port: process.env.PORT, routes: {security: true}},
   register: {

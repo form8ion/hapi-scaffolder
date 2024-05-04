@@ -39,8 +39,7 @@ suite('scaffolder', () => {
           dependencies: [
             '@hapi/glue',
             'hapi-graceful-shutdown-plugin',
-            'hapi-pino',
-            'dotenv-safe'
+            'hapi-pino'
           ],
           devDependencies: ['webpack', 'webpack-cli'],
           scripts: {
