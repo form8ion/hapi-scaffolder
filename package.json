@@ -52,7 +52,7 @@
     "nyc": "17.0.0",
     "remark-cli": "12.0.1",
     "rimraf": "6.0.1",
-    "rollup": "4.18.1",
+    "rollup": "4.19.0",
     "rollup-plugin-auto-external": "2.0.0",
     "sinon": "18.0.0",
     "travis-lint": "1.0.0"
