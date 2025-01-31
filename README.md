@@ -5,6 +5,7 @@ opinionated scaffolder for [hapi.js](https://hapijs.com) projects
 <!--status-badges start -->
 
 [![Node CI Workflow Status][github-actions-ci-badge]][github-actions-ci-link]
+[![Codecov][coverage-badge]][coverage-link]
 
 <!--status-badges end -->
 
@@ -84,3 +85,7 @@ $ npm test
 [github-actions-ci-link]: https://github.com/form8ion/hapi-scaffolder/actions?query=workflow%3A%22Node.js+CI%22+branch%3Amaster
 
 [github-actions-ci-badge]: https://github.com/form8ion/hapi-scaffolder/workflows/Node.js%20CI/badge.svg
+
+[coverage-link]: https://codecov.io/github/form8ion/hapi-scaffolder
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/hapi-scaffolder?logo=codecov
