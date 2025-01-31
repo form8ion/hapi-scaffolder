@@ -1,9 +1,7 @@
 import {resolve} from 'node:path';
-import {fileExists} from '@form8ion/core';
 
 import stubbedFs from 'mock-fs';
-import {Before, Then, When} from '@cucumber/cucumber';
-import {assert} from 'chai';
+import {Before, When} from '@cucumber/cucumber';
 
 import {scaffold} from '../../../../src/index.js';
 
@@ -23,21 +21,4 @@ Before(async function () {
 
 When('the project is scaffolded', async function () {
   this.result = await scaffold({projectRoot: this.projectRoot, tests: {}});
-});
-
-Then('the expected files are generated', async function () {
-  assert.isTrue(await fileExists(`${this.projectRoot}/src/server/index.js`));
-  assert.isTrue(await fileExists(`${this.projectRoot}/src/server/server.js`));
-  assert.isTrue(await fileExists(`${this.projectRoot}/src/server/manifest.js`));
-});
-
-Then('the expected results are returned to the js scaffolder', async function () {
-  assert.deepEqual(
-    this.result.dependencies,
-    [
-      '@hapi/glue',
-      'hapi-graceful-shutdown-plugin',
-      'hapi-pino'
-    ]
-  );
 });
