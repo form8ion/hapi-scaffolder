@@ -53,7 +53,7 @@ $ npm test
 
 [npm-link]: https://www.npmjs.com/package/@form8ion/hapi-scaffolder
 
-[npm-badge]: https://img.shields.io/npm/v/@form8ion/hapi-scaffolder.svg
+[npm-badge]: https://img.shields.io/npm/v/@form8ion/hapi-scaffolder?logo=npm
 
 [runkit-link]: https://npm.runkit.com/@form8ion/hapi-scaffolder
 
@@ -61,7 +61,7 @@ $ npm test
 
 [license-link]: LICENSE
 
-[license-badge]: https://img.shields.io/github/license/form8ion/hapi-scaffolder.svg
+[license-badge]: https://img.shields.io/github/license/form8ion/hapi-scaffolder.svg?logo=opensourceinitiative
 
 [commit-convention-link]: https://conventionalcommits.org
 
