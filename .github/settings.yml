@@ -2,5 +2,5 @@ _extends: .github
 repository:
   name: hapi-scaffolder
   description: opinionated scaffolder for hapi.js projects
-  homepage: 'https://npm.im/@form8ion/hapi-scaffolder'
+  homepage: https://npm.im/@form8ion/hapi-scaffolder
   private: false
