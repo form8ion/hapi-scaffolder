@@ -1,12 +1,15 @@
-import {resolve} from 'node:path';
+import {dirname, resolve} from 'node:path';
 import {promises as fs} from 'node:fs';
+import {fileURLToPath} from 'node:url';
 import deepmerge from 'deepmerge';
-
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default async function ({projectRoot, tests}) {
   if (tests.integration) {
-    await fs.mkdir(`${projectRoot}/test/integration/features/step_definitions`);
+    await fs.mkdir(`${projectRoot}/test/integration/features/step_definitions`, {recursive: true});
 
     const [cucumberResults] = await Promise.all([
       scaffoldCucumber({projectRoot}),

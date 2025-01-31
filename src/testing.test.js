@@ -26,6 +26,10 @@ describe('testing scaffolder', () => {
       .thenReturn(mergedResults);
 
     expect(await scaffoldTesting({projectRoot, tests: {integration: true}})).toEqual(mergedResults);
+    expect(fs.mkdir).toHaveBeenCalledWith(
+      `${projectRoot}/test/integration/features/step_definitions`,
+      {recursive: true}
+    );
     expect(fs.copyFile).toHaveBeenCalledWith(
       resolve(__dirname, '..', 'templates', 'canary.feature'),
       `${projectRoot}/test/integration/features/canary.feature`
