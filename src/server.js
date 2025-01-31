@@ -1,6 +1,10 @@
 import {promises as fs} from 'node:fs';
-import {resolve} from 'node:path';
+import {dirname, resolve} from 'node:path';
 import mustache from 'mustache';
+import {fileURLToPath} from 'node:url';
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default async function ({projectRoot, projectName}) {
   await fs.mkdir(`${projectRoot}/src/server`, {recursive: true});
