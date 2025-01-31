@@ -21,7 +21,7 @@ export default async function ({projectRoot, tests}) {
     ]);
 
     return deepmerge(
-      {devDependencies: ['@travi/any', 'http-status-codes']},
+      {dependencies: {javascript: {development: ['@travi/any', 'http-status-codes']}}},
       cucumberResults
     );
   }
