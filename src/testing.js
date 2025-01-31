@@ -1,33 +1,29 @@
-import {resolve} from 'path';
-import {promises} from 'fs';
+import {resolve} from 'node:path';
+import {promises as fs} from 'node:fs';
 import deepmerge from 'deepmerge';
 
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
 
-import mkdir from '../thirdparty-wrappers/make-dir.js';
-
 export default async function ({projectRoot, tests}) {
   if (tests.integration) {
-    const [stepDefinitionsDirectory, cucumberResults] = await Promise.all([
-      mkdir(`${projectRoot}/test/integration/features/step_definitions`),
-      scaffoldCucumber({projectRoot})
-    ]);
+    await fs.mkdir(`${projectRoot}/test/integration/features/step_definitions`);
 
-    await Promise.all([
-      promises.copyFile(
+    const [cucumberResults] = await Promise.all([
+      scaffoldCucumber({projectRoot}),
+      fs.copyFile(
         resolve(__dirname, '..', 'templates', 'canary.feature'),
-        `${stepDefinitionsDirectory}/../canary.feature`
+        `${projectRoot}/test/integration/features/canary.feature`
       ),
-      promises.copyFile(
+      fs.copyFile(
         resolve(__dirname, '..', 'templates', 'server-steps.js'),
-        `${stepDefinitionsDirectory}/server-steps.js`
+        `${projectRoot}/test/integration/features/step_definitions/server-steps.js`
       )
     ]);
 
-    return deepmerge.all([
+    return deepmerge(
       {devDependencies: ['@travi/any', 'http-status-codes']},
       cucumberResults
-    ]);
+    );
   }
 
   return {};

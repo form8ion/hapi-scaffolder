@@ -10,7 +10,7 @@ export async function scaffold({projectRoot, projectName, tests}) {
     scaffoldServer({projectRoot, projectName})
   ]);
 
-  return deepmerge.all([
+  return deepmerge(
     {
       dependencies: [
         '@hapi/glue',
@@ -27,5 +27,5 @@ export async function scaffold({projectRoot, projectName, tests}) {
       documentation: scaffoldDocumentation()
     },
     testingResults
-  ]);
+  );
 }

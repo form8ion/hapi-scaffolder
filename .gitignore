@@ -4,3 +4,10 @@
 /.nyc_output/
 
 .eslintcache
+/coverage/
+/coverage/
+.idea
+!.idea/
+.idea/*
+!.idea/runConfigurations/
+
