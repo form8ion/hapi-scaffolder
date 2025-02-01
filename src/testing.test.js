@@ -22,10 +22,14 @@ describe('testing scaffolder', () => {
     const mergedResults = any.simpleObject();
     when(scaffoldCucumber).calledWith({projectRoot}).thenReturn(cucumberResults);
     when(deepmerge)
-      .calledWith({devDependencies: ['@travi/any', 'http-status-codes']}, cucumberResults)
+      .calledWith({dependencies: {javascript: {development: ['@travi/any', 'http-status-codes']}}}, cucumberResults)
       .thenReturn(mergedResults);
 
     expect(await scaffoldTesting({projectRoot, tests: {integration: true}})).toEqual(mergedResults);
+    expect(fs.mkdir).toHaveBeenCalledWith(
+      `${projectRoot}/test/integration/features/step_definitions`,
+      {recursive: true}
+    );
     expect(fs.copyFile).toHaveBeenCalledWith(
       resolve(__dirname, '..', 'templates', 'canary.feature'),
       `${projectRoot}/test/integration/features/canary.feature`
