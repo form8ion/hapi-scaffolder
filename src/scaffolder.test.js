@@ -28,12 +28,12 @@ describe('scaffolder', () => {
     when(deepmerge)
       .calledWith(
         {
-          dependencies: [
-            '@hapi/glue',
-            'hapi-graceful-shutdown-plugin',
-            'hapi-pino'
-          ],
-          devDependencies: ['webpack', 'webpack-cli'],
+          dependencies: {
+            javascript: {
+              production: ['@hapi/glue', 'hapi-graceful-shutdown-plugin', 'hapi-pino'],
+              development: ['webpack', 'webpack-cli']
+            }
+          },
           scripts: {
             build: 'npm-run-all --print-label --parallel build:*',
             'build:server': 'webpack --env production --config webpack.config.server.babel.js',
