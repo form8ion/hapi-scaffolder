@@ -1,24 +1,36 @@
-import {resolve} from 'node:path';
+import {dirname, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 import stubbedFs from 'mock-fs';
-import {Before, When} from '@cucumber/cucumber';
+import {After, Before, When} from '@cucumber/cucumber';
+import any from '@travi/any';
 
-import {scaffold} from '../../../../src/index.js';
+// eslint-disable-next-line import/no-extraneous-dependencies,import/no-unresolved
+import {scaffold} from '@form8ion/hapi-scaffolder';
 
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectPath = [__dirname, '..', '..', '..', '..'];
 
 Before(async function () {
   this.projectRoot = process.cwd();
 
-  // work around for overly aggressive mock-fs, see:
-  // https://github.com/tschaub/mock-fs/issues/213#issuecomment-347002795
-  require('mock-stdin'); // eslint-disable-line import/no-extraneous-dependencies
-
   stubbedFs({
-    templates: stubbedFs.load(resolve(...projectPath, 'templates'))
+    node_modules: stubbedFs.load(resolve(...projectPath, 'node_modules')),
+    templates: stubbedFs.load(resolve(...projectPath, 'templates')),
+    'package.json': JSON.stringify(any.simpleObject())
   });
 });
 
+After(() => {
+  stubbedFs.restore();
+});
+
 When('the project is scaffolded', async function () {
-  this.result = await scaffold({projectRoot: this.projectRoot, tests: {}});
+  this.result = await scaffold({
+    projectRoot: this.projectRoot,
+    tests: {
+      ...this.integrationTests && {integration: this.integrationTests}
+    }
+  });
 });
