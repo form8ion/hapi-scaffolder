@@ -46,7 +46,7 @@
   },
   "packageManager": "npm@11.2.0+sha512.3dc9c50ba813a3d54393155a435fe66404b72685ab0e3008f9ae9ed8d81f6104860f07ed2656dd5748c1322d95f3140fa9b19c59a6bba7750fd12285f81866da",
   "dependencies": {
-    "@form8ion/cucumber-scaffolder": "^2.1.0",
+    "@form8ion/cucumber-scaffolder": "^5.0.0",
     "deepmerge": "^4.2.2",
     "mustache": "^4.0.0"
   },
